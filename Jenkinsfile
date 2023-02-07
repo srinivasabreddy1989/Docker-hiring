@@ -11,14 +11,14 @@ pipeline {
         
         stage('Docker Build') {
             steps {
-                sh "docker build -t kammana/hiring:0.0.2 ."
+                sh "docker build -t srinivasa381224/hiring:0.0.2 ."
             }
         }
         stage('Docker Push') {
             steps {
                 withCredentials([string(credentialsId: 'Dockerhub-password', variable: 'hubpwd')]) {
                     sh "docker login -u srinivasa381224 -p ${hubpwd}"
-                    sh "docker push kammana/hiring:0.0.2"
+                    sh "docker push srinivasa381224/hiring:0.0.2"
                 
             }
         }
