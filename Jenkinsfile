@@ -26,7 +26,7 @@ pipeline {
     stage('Docker Push') {
             steps {
                 sshagent(['docker-host-elk']) {
-                  sh "ssh ec2-user@172.31.21.4 docker run -d -p 8080:8080 --name hiring srinivasa381224/hiring:0.0.2"
+                  sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.21.4 docker run -d -p 8080:8080 --name hiring srinivasa381224/hiring:0.0.2"
             }
         }
         
