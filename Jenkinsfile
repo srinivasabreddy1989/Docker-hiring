@@ -26,6 +26,7 @@ pipeline {
     stage('Docker deploy') {
             steps {
                 sshagent(['docker-host-elk']) {
+                  sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.21.4 docker rm -f hiring"
                   sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.21.4 docker run -d -p 8080:8080 --name hiring srinivasa381224/hiring:0.0.2"
             }
         }
