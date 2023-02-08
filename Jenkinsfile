@@ -11,7 +11,7 @@ pipeline {
         
         stage('Docker Build') {
             steps {
-                sh "docker build . -t srinivasa381224/hiring:${get_commit_id()} ."
+                sh "docker build . -t srinivasa381224/hiring:${get_commit_id()}"
             }
         }
         stage('Docker Push') {
