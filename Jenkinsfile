@@ -28,6 +28,7 @@ pipeline {
                 sshagent(['docker-host-elk']) {
                   sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.21.241 docker rm -f hiring"
                   sh "ssh ec2-user@172.31.21.241 docker run -d -p 8090:8080 --name hiring srinivasa381224/hiring:${get_commit_id()}"
+                  sh "ssh ec2-user@172.31.21.241 docker system prune --all --force"
             }
         }
         
