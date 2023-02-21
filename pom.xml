@@ -5,7 +5,7 @@
   <artifactId>sonarqube</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>sonarqube web app</name>
+  <name>tester web app</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
