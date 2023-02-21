@@ -43,18 +43,18 @@ pipeline {
     }
     
     // Email notification for success and failure
-    post {
-        success {
-            emailext to: "srinivasa20071989@gmail.com",
-            subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-            body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
-  }
-  failure {
-    emailext to: "srinivasa20071989@gmail.com",
-    subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
-    body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
-  }
-}
+//     post {
+//         success {
+//             emailext to: "srinivasa20071989@gmail.com",
+//             subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+//             body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+//   }
+//   failure {
+//     emailext to: "srinivasa20071989@gmail.com",
+//     subject: "jenkins build:${currentBuild.currentResult}: ${env.JOB_NAME}",
+//     body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
+//   }
+// }
 // Slack notification for success and failure
     post {
         success {
