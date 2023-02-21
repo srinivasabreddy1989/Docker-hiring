@@ -8,6 +8,13 @@ pipeline {
                 sh "mvn clean package"
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonar9') { 
+                sh "mvn sonar:sonar"
+            }
+        }
+    }
         
         stage('Docker Build') {
             steps {
@@ -34,6 +41,8 @@ pipeline {
         
     }
     }
+    
+    // Email notification for success and failure
     post {
         success {
             emailext to: "srinivasa20071989@gmail.com",
@@ -46,6 +55,15 @@ pipeline {
     body: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}"
   }
 }
+// Slack notification for success and failure
+    post {
+        success {
+    slackSend channel: '#czv', color: 'green', failOnError: true, message: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}", tokenCredentialId: 'slack-token'
+    }
+        failure {
+            slackSend channel: '#czv', color: 'red', failOnError: true, message: "${currentBuild.currentResult}: Job ${env.JOB_NAME}\nMore Info can be found here: ${env.BUILD_URL}", tokenCredentialId: 'slack-token'
+        }
+    }
 }
 def get_commit_id(){
     id = sh returnStdout: true, script: 'git rev-parse --short HEAD'
